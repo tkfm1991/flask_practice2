@@ -13,7 +13,11 @@ def result():
     # 値を受け取る
     # return render_template('result.html')
     fruit_no = request.args.get('fruit_no', '')
-    return render_template('result.html', fruit=fruits[fruit_no])
+    try:
+        return render_template('result.html', fruit=fruits[fruit_no])
+    except KeyError:
+        # KeyError発生時はインデックスへ遷移
+        return render_template('index.html')
 
 
 if __name__ == '__main__':
